@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Loki</string>
+    <string name="new_pin">Please Enter New Pin</string>
 </resources>

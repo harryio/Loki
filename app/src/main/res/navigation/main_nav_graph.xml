@@ -10,12 +10,12 @@
         android:label="SettingsFragment">
         <action
             android:id="@+id/action_show_pin"
-            app:destination="@id/pinEntryFragment" />
+            app:destination="@id/newPinFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/pinEntryFragment"
-        android:name="io.github.sainiharry.loki.PinEntryFragment"
+        android:id="@+id/newPinFragment"
+        android:name="io.github.sainiharry.loki.NewPinFragment"
         android:label="PinEntryFragment" />
 
 </navigation>
