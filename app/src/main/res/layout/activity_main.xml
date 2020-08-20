@@ -9,6 +9,7 @@
     <io.github.sainiharry.loki.PinEntryEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLength="4"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeWidth="1dp"
         app:spacing="16dp"

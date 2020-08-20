@@ -13,6 +13,7 @@ class PinEntryEditText : AppCompatEditText {
     private var spacing = 0
 
     private lateinit var linePaint: Paint
+    private lateinit var textPaint: Paint
 
     constructor(context: Context?) : super(context) {
         init(context, null, 0)
@@ -59,6 +60,8 @@ class PinEntryEditText : AppCompatEditText {
         linePaint = Paint(paint)
         linePaint.strokeWidth = lineStrokeWidth
 
+        textPaint = Paint(paint)
+
         setBackgroundResource(0)
     }
 
@@ -70,10 +73,9 @@ class PinEntryEditText : AppCompatEditText {
         val numOfSpaces = numOfChars - 1
         val lineWidth = (availableWidth - (spacing * (numOfSpaces))) / numOfChars
 
-        var lineStart = startX
         for (i in 0 until numOfChars) {
+            val lineStart = startX + (lineWidth + spacing) * i
             canvas?.drawLine(lineStart, bottom, lineStart + lineWidth, bottom, linePaint)
-            lineStart += lineWidth + spacing
         }
     }
 }
