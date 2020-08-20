@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.pin_layout.*
 
@@ -23,12 +24,14 @@ class NewPinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val navController = findNavController()
+
         pin_entry.addTextChangedListener {
             viewModel.handleNewPin(it.toString())
         }
 
         viewModel.confirmPinNavigationEvent.observe(viewLifecycleOwner, EventObserver {
-            // TODO: 20/08/20 Navigate to confirm pin here
+            navController.navigate(NewPinFragmentDirections.actionConfirmPin(it))
         })
     }
 }

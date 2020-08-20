@@ -9,13 +9,30 @@
         android:name="io.github.sainiharry.loki.SettingsFragment"
         android:label="SettingsFragment">
         <action
-            android:id="@+id/action_show_pin"
+            android:id="@+id/action_new_pin"
             app:destination="@id/newPinFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/newPinFragment"
         android:name="io.github.sainiharry.loki.NewPinFragment"
-        android:label="PinEntryFragment" />
+        android:label="New Pin">
+
+        <action
+            android:id="@+id/action_confirm_pin"
+            app:destination="@id/confirmPinFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmPinFragment"
+        android:name="io.github.sainiharry.loki.ConfirmPinFragment"
+        android:label="Confirm Pin">
+
+        <argument
+            android:name="currentPin"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>
