@@ -1,4 +1,4 @@
-package io.github.sainiharry.loki
+package io.github.sainiharry.pinentryedittext
 
 import android.content.Context
 import android.graphics.Canvas
@@ -20,15 +20,15 @@ class PinEntryEditText : AppCompatEditText {
 
     private lateinit var linePaint: Paint
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         init(context, null, 0)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(context, attrs, 0)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
@@ -36,27 +36,25 @@ class PinEntryEditText : AppCompatEditText {
         init(context, attrs, defStyleAttr)
     }
 
-    private fun init(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) {
-        context?.let {
-            context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.PinEntryEditText,
-                defStyleAttr,
-                0
-            ).apply {
-                try {
-                    //todo update default value
-                    lineStrokeWidth =
-                        getDimensionPixelSize(R.styleable.PinEntryEditText_strokeWidth, 0).toFloat()
-                    spacing = getDimensionPixelSize(R.styleable.PinEntryEditText_spacing, 0)
-                    textVerticalPadding = getDimensionPixelSize(
-                        R.styleable.PinEntryEditText_textVerticalPadding,
-                        0
-                    ).toFloat()
-                    strokeColor = getColor(R.styleable.PinEntryEditText_strokeColor, Color.BLACK)
-                } finally {
-                    recycle()
-                }
+    private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.PinEntryEditText,
+            defStyleAttr,
+            0
+        ).apply {
+            try {
+                //todo update default value
+                lineStrokeWidth =
+                    getDimensionPixelSize(R.styleable.PinEntryEditText_strokeWidth, 0).toFloat()
+                spacing = getDimensionPixelSize(R.styleable.PinEntryEditText_spacing, 0)
+                textVerticalPadding = getDimensionPixelSize(
+                    R.styleable.PinEntryEditText_textVerticalPadding,
+                    0
+                ).toFloat()
+                strokeColor = getColor(R.styleable.PinEntryEditText_strokeColor, Color.BLACK)
+            } finally {
+                recycle()
             }
         }
 

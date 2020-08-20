@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <io.github.sainiharry.loki.PinEntryEditText
+    <io.github.sainiharry.pinentryedittext.PinEntryEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:digits="0,1,2,3,4,5,6,7,8,9"
@@ -20,6 +20,6 @@
         app:textVerticalPadding="@dimen/pin_entry_vertical_padding">
 
         <requestFocus />
-    </io.github.sainiharry.loki.PinEntryEditText>
+    </io.github.sainiharry.pinentryedittext.PinEntryEditText>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

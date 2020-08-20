@@ -1,2 +1,3 @@
+include ':pinentryedittext'
 include ':app'
 rootProject.name = "Loki"
