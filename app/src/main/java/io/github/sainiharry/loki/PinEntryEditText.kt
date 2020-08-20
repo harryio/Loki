@@ -13,7 +13,7 @@ class PinEntryEditText : AppCompatEditText {
     private var lineStrokeWidth = 0f
     private var spacing = 0
     private var strokeColor = Color.BLACK
-    private var textVerticalPadding = 0f;
+    private var textVerticalPadding = 0f
 
     private lateinit var linePaint: Paint
 
