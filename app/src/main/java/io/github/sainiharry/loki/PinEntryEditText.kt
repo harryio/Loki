@@ -5,6 +5,9 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.ActionMode
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.AppCompatEditText
 
 class PinEntryEditText : AppCompatEditText {
@@ -69,6 +72,18 @@ class PinEntryEditText : AppCompatEditText {
         linePaint.color = strokeColor
 
         setBackgroundResource(0)
+
+        // Disable copy-paste
+        super.setCustomSelectionActionModeCallback(object: ActionMode.Callback {
+            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
+
+            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
+
+            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean = false
+
+            override fun onDestroyActionMode(mode: ActionMode?) {
+            }
+        })
     }
 
     override fun onDraw(canvas: Canvas?) {
