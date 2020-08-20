@@ -84,11 +84,12 @@ class PinEntryEditText : AppCompatEditText {
             canvas?.drawLine(lineStart, bottom, lineStart + lineWidth, bottom, linePaint)
         }
 
+        val textWidth = paint.measureText("*")
         val inputLength = text?.length ?: 0
         for (i in 0 until inputLength) {
             val lineStart = startX + (lineWidth + spacing) * i
             val lineMiddle = lineStart + (lineWidth / 2)
-            canvas?.drawText("*", lineMiddle, bottom - textVerticalPadding, paint)
+            canvas?.drawText("*", lineMiddle - (textWidth / 2), bottom - textVerticalPadding, paint)
         }
     }
 }
