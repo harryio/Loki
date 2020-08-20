@@ -33,6 +33,11 @@
             android:name="currentPin"
             app:argType="string" />
 
+        <action
+            android:id="@+id/popToSettings"
+            app:popUpTo="@id/settingsFragment"
+            app:popUpToInclusive="false" />
+
     </fragment>
 
 </navigation>
