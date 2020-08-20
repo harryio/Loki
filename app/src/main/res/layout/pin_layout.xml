@@ -15,7 +15,7 @@
         android:maxLength="@integer/pin_entry_characters"
         android:textSize="@dimen/pin_entry_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label"
         app:spacing="@dimen/pin_entry_spacing"
         app:strokeWidth="@dimen/pin_entry_stroke_width"
         app:textVerticalPadding="@dimen/pin_entry_vertical_padding">
