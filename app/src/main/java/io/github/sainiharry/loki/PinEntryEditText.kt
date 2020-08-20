@@ -2,6 +2,7 @@ package io.github.sainiharry.loki
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
@@ -11,9 +12,10 @@ class PinEntryEditText : AppCompatEditText {
     private var numOfChars = 0
     private var lineStrokeWidth = 0f
     private var spacing = 0
+    private var strokeColor = Color.BLACK
+    private var textVerticalPadding = 0f;
 
     private lateinit var linePaint: Paint
-    private lateinit var textPaint: Paint
 
     constructor(context: Context?) : super(context) {
         init(context, null, 0)
@@ -44,6 +46,11 @@ class PinEntryEditText : AppCompatEditText {
                     lineStrokeWidth =
                         getDimensionPixelSize(R.styleable.PinEntryEditText_strokeWidth, 0).toFloat()
                     spacing = getDimensionPixelSize(R.styleable.PinEntryEditText_spacing, 0)
+                    textVerticalPadding = getDimensionPixelSize(
+                        R.styleable.PinEntryEditText_textVerticalPadding,
+                        0
+                    ).toFloat()
+                    strokeColor = getColor(R.styleable.PinEntryEditText_strokeColor, Color.BLACK)
                 } finally {
                     recycle()
                 }
@@ -57,10 +64,9 @@ class PinEntryEditText : AppCompatEditText {
             4
         ) ?: 0
 
-        linePaint = Paint(paint)
+        linePaint = Paint()
         linePaint.strokeWidth = lineStrokeWidth
-
-        textPaint = Paint(paint)
+        linePaint.color = strokeColor
 
         setBackgroundResource(0)
     }
@@ -76,6 +82,13 @@ class PinEntryEditText : AppCompatEditText {
         for (i in 0 until numOfChars) {
             val lineStart = startX + (lineWidth + spacing) * i
             canvas?.drawLine(lineStart, bottom, lineStart + lineWidth, bottom, linePaint)
+        }
+
+        val inputLength = text?.length ?: 0
+        for (i in 0 until inputLength) {
+            val lineStart = startX + (lineWidth + spacing) * i
+            val lineMiddle = lineStart + (lineWidth / 2)
+            canvas?.drawText("*", lineMiddle, bottom - textVerticalPadding, paint)
         }
     }
 }

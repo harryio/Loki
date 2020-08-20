@@ -2,6 +2,8 @@
 <resources>
     <declare-styleable name="PinEntryEditText">
         <attr name="strokeWidth" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="textVerticalPadding" format="dimension" />
         <attr name="spacing" format="dimension" />
     </declare-styleable>
 </resources>
