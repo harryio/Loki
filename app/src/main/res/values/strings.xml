@@ -2,4 +2,5 @@
     <string name="app_name">Loki</string>
     <string name="new_pin">Please Enter New Pin</string>
     <string name="confirm_pin">Confirm Pin</string>
+    <string name="enable_pin">Enable Pin:</string>
 </resources>
