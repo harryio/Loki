@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pin_entry_text_size">30sp</dimen>
+    <dimen name="pin_entry_spacing">16dp</dimen>
+    <dimen name="pin_entry_stroke_width">1dp</dimen>
+    <dimen name="pin_entry_vertical_padding">4dp</dimen>
+
+    <integer name="pin_entry_characters">4</integer>
+</resources>
