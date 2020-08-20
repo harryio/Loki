@@ -6,20 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <io.github.sainiharry.pinentryedittext.PinEntryEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0,1,2,3,4,5,6,7,8,9"
-        android:inputType="number"
-        android:maxLength="@integer/pin_entry_characters"
-        android:textSize="@dimen/pin_entry_text_size"
-        app:layout_constraintStart_toStartOf="parent"
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:spacing="@dimen/pin_entry_spacing"
-        app:strokeWidth="@dimen/pin_entry_stroke_width"
-        app:textVerticalPadding="@dimen/pin_entry_vertical_padding">
-
-        <requestFocus />
-    </io.github.sainiharry.pinentryedittext.PinEntryEditText>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
