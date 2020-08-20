@@ -84,6 +84,11 @@ class PinEntryEditText : AppCompatEditText {
             override fun onDestroyActionMode(mode: ActionMode?) {
             }
         })
+
+        //Move cursor to end of text
+        super.setOnClickListener {
+            setSelection(text?.length ?: 0)
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
