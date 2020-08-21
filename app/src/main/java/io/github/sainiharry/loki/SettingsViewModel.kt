@@ -21,9 +21,9 @@ class SettingsViewModel : ViewModel() {
 
     private var isUserAuthenticated = false
 
-    fun handlePin(pin: String?) {
+    fun handlePin(pin: String?, isAppLocked: Boolean) {
         _isPinAvailable.value = !pin.isNullOrEmpty()
-        if (_isPinAvailable.value == true && !isUserAuthenticated) {
+        if ((_isPinAvailable.value == true && !isUserAuthenticated) || isAppLocked) {
             _enterPinNavigationEvent.value = Event(pin!!)
         }
     }

@@ -8,4 +8,6 @@
     <string name="pin_set_error_msg">Incorrect pin entered</string>
     <string name="enter_pin">Enter Pin</string>
     <string name="welcome_back">Welcome Back!</string>
+    <string name="incorrect_pin">Incorrect Pin</string>
+    <string name="locked_msg">The app is locked for 1 minute</string>
 </resources>

@@ -48,6 +48,6 @@ class SettingsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         viewModel.handleUserAuthenticated(authenticationViewModel.isUserAuthenticated)
-        viewModel.handlePin(PrefInteractor.getPin())
+        viewModel.handlePin(PrefInteractor.getPin(), PrefInteractor.isAppLocked())
     }
 }
