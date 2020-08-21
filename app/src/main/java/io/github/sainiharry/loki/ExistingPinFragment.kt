@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import io.github.sainiharry.loki.utils.EventObserver
 
 class ExistingPinFragment : Fragment() {
 
@@ -28,4 +30,13 @@ class ExistingPinFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_existing_pin, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
+
+        viewModel.pinSuccessEvent.observe(viewLifecycleOwner, EventObserver {
+            navController.navigate(ExistingPinFragmentDirections.actionSettings())
+        })
+    }
 }
