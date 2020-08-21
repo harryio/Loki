@@ -40,6 +40,10 @@ class SettingsFragment : Fragment() {
             navController.navigate(SettingsFragmentDirections.actionEnterPin(it))
         })
 
+        viewModel.pinDeactivatedEvent.observe(viewLifecycleOwner, EventObserver {
+            PrefInteractor.clearPin()
+        })
+
         pin_toggle.setOnClickListener {
             viewModel.handlePinToggleClick()
         }

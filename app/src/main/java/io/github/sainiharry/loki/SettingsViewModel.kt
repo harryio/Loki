@@ -19,6 +19,10 @@ class SettingsViewModel : ViewModel() {
     val enterPinNavigationEvent: LiveData<Event<String>>
         get() = _enterPinNavigationEvent
 
+    private val _pinDeactivatedEvent = MutableLiveData<Event<Any>>()
+    val pinDeactivatedEvent: LiveData<Event<Any>>
+        get() = _pinDeactivatedEvent
+
     private var isUserAuthenticated = false
 
     fun handlePin(pin: String?, isAppLocked: Boolean) {
@@ -32,6 +36,7 @@ class SettingsViewModel : ViewModel() {
         if (isPinAvailable.value == false) {
             _newPinNavigationEvent.value = Event(Any())
         } else {
+            _pinDeactivatedEvent.value = Event(Any())
             _isPinAvailable.value = false
         }
     }

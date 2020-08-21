@@ -37,6 +37,10 @@ object PrefInteractor {
         encryptedSharedPref.edit().putString(KEY_PIN, pin).apply()
     }
 
+    fun clearPin() {
+        encryptedSharedPref.edit().remove(KEY_PIN).apply()
+    }
+
     fun getPin(): String? = encryptedSharedPref.getString(KEY_PIN, null)
 
     fun setUnlockSeconds(seconds: Int) {
