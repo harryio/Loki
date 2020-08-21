@@ -44,7 +44,6 @@ class PinEntryEditText : AppCompatEditText {
             0
         ).apply {
             try {
-                //todo update default value
                 lineStrokeWidth =
                     getDimensionPixelSize(R.styleable.PinEntryEditText_strokeWidth, 0).toFloat()
                 spacing = getDimensionPixelSize(R.styleable.PinEntryEditText_spacing, 0)
@@ -58,7 +57,6 @@ class PinEntryEditText : AppCompatEditText {
             }
         }
 
-        // TODO: 20/08/20 move to constant
         numOfChars = attrs?.getAttributeIntValue(
             "http://schemas.android.com/apk/res/android",
             "maxLength",
@@ -72,7 +70,7 @@ class PinEntryEditText : AppCompatEditText {
         setBackgroundResource(0)
 
         // Disable copy-paste
-        super.setCustomSelectionActionModeCallback(object: ActionMode.Callback {
+        super.setCustomSelectionActionModeCallback(object : ActionMode.Callback {
             override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
 
             override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
