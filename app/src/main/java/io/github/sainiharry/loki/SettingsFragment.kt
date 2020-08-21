@@ -28,9 +28,6 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
 
-        viewModel.handleUserAuthenticated(authenticationViewModel.isUserAuthenticated)
-        viewModel.handlePin(PrefInteractor.getPin())
-
         viewModel.isPinAvailable.observe(viewLifecycleOwner, Observer {
             pin_toggle.isChecked = it ?: false
         })
@@ -46,5 +43,11 @@ class SettingsFragment : Fragment() {
         pin_toggle.setOnClickListener {
             viewModel.handlePinToggleClick()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.handleUserAuthenticated(authenticationViewModel.isUserAuthenticated)
+        viewModel.handlePin(PrefInteractor.getPin())
     }
 }

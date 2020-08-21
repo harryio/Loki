@@ -8,7 +8,7 @@ class AuthenticationViewModel : ViewModel() {
     val isUserAuthenticated: Boolean
         get() = _isUserAuthenticated
 
-    fun setUserAuthenticated() {
-        _isUserAuthenticated = true
+    fun setUserAuthenticated(authenticated: Boolean = true) {
+        _isUserAuthenticated = authenticated
     }
 }
