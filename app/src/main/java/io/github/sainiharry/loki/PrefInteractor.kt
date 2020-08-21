@@ -8,7 +8,9 @@ private const val SHARED_PREFERENCES_FILE = "LokiSharedPreferences"
 
 private const val KEY_PIN = "KEY_LOKI_PIN"
 
-class PrefInteractor(private val context: Context) {
+object PrefInteractor {
+
+    lateinit var context: Context
 
     private val encryptedSharedPref by lazy {
         EncryptedSharedPreferences.create(

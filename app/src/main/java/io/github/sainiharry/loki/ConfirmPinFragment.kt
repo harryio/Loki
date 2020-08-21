@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.pin_layout.*
@@ -35,12 +36,15 @@ class ConfirmPinFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
 
         pin_entry.addTextChangedListener {
             viewModel.handleConfirmPin(it.toString())
         }
 
         viewModel.pinSetSuccessEvent.observe(viewLifecycleOwner, EventObserver {
+            navController.navigate(ConfirmPinFragmentDirections.popToSettings())
+            PrefInteractor.storePin(it)
             Toast.makeText(requireContext(), R.string.pin_set_success_msg, Toast.LENGTH_SHORT)
                 .show()
         })

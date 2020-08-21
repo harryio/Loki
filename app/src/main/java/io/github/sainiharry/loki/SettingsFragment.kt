@@ -13,10 +13,6 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
 
-    private val prefInteractor by lazy {
-        PrefInteractor(requireContext())
-    }
-
     private val viewModel by viewModels<SettingsViewModel>()
 
     override fun onCreateView(
@@ -29,7 +25,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
 
-        viewModel.handlePin(prefInteractor.getPin())
+        viewModel.handlePin(PrefInteractor.getPin())
 
         viewModel.isPinAvailable.observe(viewLifecycleOwner, Observer {
             pin_toggle.isChecked = it ?: false
