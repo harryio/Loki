@@ -8,9 +8,17 @@
         android:id="@+id/settingsFragment"
         android:name="io.github.sainiharry.loki.SettingsFragment"
         android:label="SettingsFragment">
+
         <action
             android:id="@+id/action_new_pin"
             app:destination="@id/newPinFragment" />
+
+        <action
+            android:id="@+id/action_existing_pin"
+            app:destination="@id/existingPinFragment"
+            app:popUpTo="@id/settingsFragment"
+            app:popUpToInclusive="true" />
+        
     </fragment>
 
     <fragment
@@ -37,6 +45,23 @@
             android:id="@+id/popToSettings"
             app:popUpTo="@id/settingsFragment"
             app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/existingPinFragment"
+        android:name="io.github.sainiharry.loki.ExistingPinFragment"
+        android:label="ExistingPinFragment">
+
+        <action
+            android:id="@+id/action_settings"
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/existingPinFragment"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="existingPin"
+            app:argType="string" />
 
     </fragment>
 
