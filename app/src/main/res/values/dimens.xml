@@ -5,5 +5,8 @@
     <dimen name="pin_entry_stroke_width">1dp</dimen>
     <dimen name="pin_entry_vertical_padding">4dp</dimen>
 
+    <dimen name="label_text_size">20sp</dimen>
+    <dimen name="label_margin_top">24dp</dimen>
+
     <integer name="pin_entry_characters">4</integer>
 </resources>
