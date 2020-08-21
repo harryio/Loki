@@ -15,10 +15,17 @@ class SettingsViewModel : ViewModel() {
     val isPinAvailable: LiveData<Boolean>
         get() = _isPinAvailable
 
-    private var existingPin: String? = null
+    private val _enterPinNavigationEvent = MutableLiveData<Event<String>>()
+    val enterPinNavigationEvent: LiveData<Event<String>>
+        get() = _enterPinNavigationEvent
+
+    private var isUserAuthenticated = false
 
     fun handlePin(pin: String?) {
         _isPinAvailable.value = !pin.isNullOrEmpty()
+        if (_isPinAvailable.value == true && !isUserAuthenticated) {
+            _enterPinNavigationEvent.value = Event(pin!!)
+        }
     }
 
     fun handlePinToggleClick() {
@@ -27,5 +34,9 @@ class SettingsViewModel : ViewModel() {
         } else {
             _isPinAvailable.value = false
         }
+    }
+
+    fun handleUserAuthenticated(isUserAuthenticated: Boolean) {
+        this@SettingsViewModel.isUserAuthenticated = isUserAuthenticated
     }
 }

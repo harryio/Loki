@@ -1,6 +1,7 @@
 package io.github.sainiharry.loki
 
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,15 +17,17 @@ import androidx.navigation.fragment.navArgs
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.pin_layout.*
 
-class ConfirmPinFragment : Fragment() {
+class EnterPinFragment : Fragment() {
 
-    private val args: ConfirmPinFragmentArgs by navArgs()
+    private val args: EnterPinFragmentArgs by navArgs()
 
-    private val viewModel by viewModels<ConfirmPinViewModel> {
+    private var textWatcher: TextWatcher? = null
+
+    private val viewModel by viewModels<EnterPinViewModel> {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return ConfirmPinViewModel(args.currentPin) as T
+                return EnterPinViewModel(args.existingPin) as T
             }
         }
     }
@@ -35,26 +38,32 @@ class ConfirmPinFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_confirm_pin, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_enter_pin, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
 
-        pin_entry.addTextChangedListener {
-            viewModel.handleConfirmPin(it.toString())
-        }
-
-        viewModel.pinSetSuccessEvent.observe(viewLifecycleOwner, EventObserver {
+        viewModel.pinEnterSuccessEvent.observe(viewLifecycleOwner, EventObserver {
             authenticationViewModel.setUserAuthenticated()
-            PrefInteractor.storePin(it)
-            navController.navigate(ConfirmPinFragmentDirections.popToSettings())
-            Toast.makeText(requireContext(), R.string.pin_set_success_msg, Toast.LENGTH_SHORT)
-                .show()
         })
-        viewModel.pinSetErrorEvent.observe(viewLifecycleOwner, EventObserver {
-            pin_entry.setText("")
-            Toast.makeText(requireContext(), R.string.pin_set_error_msg, Toast.LENGTH_SHORT).show()
+
+        viewModel.settingsNavigationEvent.observe(viewLifecycleOwner, EventObserver {
+            Toast.makeText(requireContext(), R.string.welcome_back, Toast.LENGTH_SHORT).show()
+            navController.navigate(EnterPinFragmentDirections.actionSettings())
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        textWatcher = pin_entry.addTextChangedListener {
+            viewModel.handlePinInput(it.toString())
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        pin_entry.setText("")
+        pin_entry.removeTextChangedListener(textWatcher)
     }
 }

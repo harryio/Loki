@@ -14,8 +14,8 @@
             app:destination="@id/newPinFragment" />
 
         <action
-            android:id="@+id/action_existing_pin"
-            app:destination="@id/existingPinFragment"
+            android:id="@+id/action_enter_pin"
+            app:destination="@id/enterPinFragment"
             app:popUpTo="@id/settingsFragment"
             app:popUpToInclusive="true" />
 
@@ -49,14 +49,14 @@
     </fragment>
 
     <fragment
-        android:id="@+id/existingPinFragment"
-        android:name="io.github.sainiharry.loki.ExistingPinFragment"
-        android:label="ExistingPinFragment">
+        android:id="@+id/enterPinFragment"
+        android:name="io.github.sainiharry.loki.EnterPinFragment"
+        android:label="EnterPinFragment">
 
         <action
             android:id="@+id/action_settings"
             app:destination="@id/settingsFragment"
-            app:popUpTo="@id/existingPinFragment"
+            app:popUpTo="@id/enterPinFragment"
             app:popUpToInclusive="true" />
 
         <argument
