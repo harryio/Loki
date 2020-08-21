@@ -60,12 +60,17 @@ class EnterPinFragment : Fragment() {
 
         viewModel.startCountDownEvent.observe(viewLifecycleOwner, EventObserver {
             countDownTimer?.cancel()
-            countDownTimer = object : CountDownTimer(it.toLong() * 1000, 1000) {
+            PrefInteractor.setUnlockSeconds(it)
+            countDownTimer = object : CountDownTimer((it + 1).toLong() * 1000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    viewModel.handleUnlockSeconds((millisUntilFinished / 1000).toInt())
+                    val unlockSeconds = (millisUntilFinished / 1000).toInt()
+                    PrefInteractor.setUnlockSeconds(unlockSeconds)
+                    viewModel.handleUnlockSeconds(unlockSeconds)
                 }
 
                 override fun onFinish() {
+                    PrefInteractor.setUnlockSeconds(0)
+                    viewModel.handleUnlockSeconds(0)
                 }
             }
             countDownTimer!!.start()
@@ -107,5 +112,10 @@ class EnterPinFragment : Fragment() {
         super.onStop()
         pin_entry.setText("")
         pin_entry.removeTextChangedListener(textWatcher)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        countDownTimer?.cancel()
     }
 }
