@@ -1,4 +1,4 @@
-package io.github.sainiharry.loki
+package io.github.sainiharry.loki.features.newpin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ class NewPinViewModel : ViewModel() {
     val confirmPinNavigationEvent: LiveData<Event<String>>
         get() = _confirmPinNavigationEvent
 
-    fun handleNewPin(newPin: String) {
+    internal fun handleNewPin(newPin: String) {
         if (newPin.length == 4) {
             _confirmPinNavigationEvent.value = Event(newPin)
         }

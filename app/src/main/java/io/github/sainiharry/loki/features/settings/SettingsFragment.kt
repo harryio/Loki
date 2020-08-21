@@ -1,4 +1,4 @@
-package io.github.sainiharry.loki
+package io.github.sainiharry.loki.features.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import io.github.sainiharry.loki.AuthenticationViewModel
+import io.github.sainiharry.loki.PrefInteractor
+import io.github.sainiharry.loki.R
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_settings.*
 

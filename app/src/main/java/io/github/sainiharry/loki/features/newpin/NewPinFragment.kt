@@ -1,4 +1,4 @@
-package io.github.sainiharry.loki
+package io.github.sainiharry.loki.features.newpin
 
 import android.os.Bundle
 import android.text.TextWatcher
@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import io.github.sainiharry.loki.R
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.pin_layout.*
 

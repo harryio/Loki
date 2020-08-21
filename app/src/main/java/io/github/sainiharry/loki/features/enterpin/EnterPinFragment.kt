@@ -1,4 +1,4 @@
-package io.github.sainiharry.loki
+package io.github.sainiharry.loki.features.enterpin
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -16,6 +16,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import io.github.sainiharry.loki.AuthenticationViewModel
+import io.github.sainiharry.loki.PrefInteractor
+import io.github.sainiharry.loki.R
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_enter_pin.*
 import kotlinx.android.synthetic.main.pin_layout.*

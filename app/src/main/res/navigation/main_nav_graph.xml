@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="io.github.sainiharry.loki.SettingsFragment"
+        android:name="io.github.sainiharry.loki.features.settings.SettingsFragment"
         android:label="SettingsFragment">
 
         <action
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/newPinFragment"
-        android:name="io.github.sainiharry.loki.NewPinFragment"
+        android:name="io.github.sainiharry.loki.features.newpin.NewPinFragment"
         android:label="New Pin">
 
         <action
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/confirmPinFragment"
-        android:name="io.github.sainiharry.loki.ConfirmPinFragment"
+        android:name="io.github.sainiharry.loki.features.confirmpin.ConfirmPinFragment"
         android:label="Confirm Pin">
 
         <argument
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/enterPinFragment"
-        android:name="io.github.sainiharry.loki.EnterPinFragment"
+        android:name="io.github.sainiharry.loki.features.enterpin.EnterPinFragment"
         android:label="EnterPinFragment">
 
         <action
