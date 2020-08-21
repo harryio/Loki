@@ -1,6 +1,7 @@
 package io.github.sainiharry.loki
 
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ class NewPinFragment : Fragment() {
 
     private val viewModel by viewModels<NewPinViewModel>()
 
+    private var textWatcher: TextWatcher? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,15 +26,23 @@ class NewPinFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val navController = findNavController()
-
-        pin_entry.addTextChangedListener {
-            viewModel.handleNewPin(it.toString())
-        }
 
         viewModel.confirmPinNavigationEvent.observe(viewLifecycleOwner, EventObserver {
             navController.navigate(NewPinFragmentDirections.actionConfirmPin(it))
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        textWatcher = pin_entry.addTextChangedListener {
+            viewModel.handleNewPin(it.toString())
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        pin_entry.setText("")
+        pin_entry.removeTextChangedListener(textWatcher)
     }
 }
