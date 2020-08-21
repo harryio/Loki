@@ -5,17 +5,27 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.github.sainiharry.loki.utils.Event
 
-class SettingsViewModel(private val existingPin: String?) : ViewModel() {
+class SettingsViewModel : ViewModel() {
 
     private val _newPinNavigationEvent = MutableLiveData<Event<Any>>()
     val newPinNavigationEvent: LiveData<Event<Any>>
         get() = _newPinNavigationEvent
 
-    fun isPinSet(): Boolean = !existingPin.isNullOrEmpty()
+    private val _isPinAvailable = MutableLiveData<Boolean>()
+    val isPinAvailable: LiveData<Boolean>
+        get() = _isPinAvailable
 
-    fun handlePinToggle(enabled: Boolean) {
-        if (enabled && existingPin.isNullOrEmpty()) {
+    private var existingPin: String? = null
+
+    fun handlePin(pin: String?) {
+        _isPinAvailable.value = !pin.isNullOrEmpty()
+    }
+
+    fun handlePinToggleClick() {
+        if (isPinAvailable.value == false) {
             _newPinNavigationEvent.value = Event(Any())
+        } else {
+            _isPinAvailable.value = false
         }
     }
 }

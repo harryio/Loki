@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import io.github.sainiharry.loki.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -18,14 +17,7 @@ class SettingsFragment : Fragment() {
         PrefInteractor(requireContext())
     }
 
-    private val viewModel by viewModels<SettingsViewModel> {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return SettingsViewModel(prefInteractor.getPin()) as T
-            }
-        }
-    }
+    private val viewModel by viewModels<SettingsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,11 +29,18 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
 
-        pin_toggle.isChecked = viewModel.isPinSet()
-        pin_toggle.setOnCheckedChangeListener { _, isChecked -> viewModel.handlePinToggle(isChecked) }
+        viewModel.handlePin(prefInteractor.getPin())
+
+        viewModel.isPinAvailable.observe(viewLifecycleOwner, Observer {
+            pin_toggle.isChecked = it ?: false
+        })
 
         viewModel.newPinNavigationEvent.observe(viewLifecycleOwner, EventObserver {
             navController.navigate(SettingsFragmentDirections.actionNewPin())
         })
+
+        pin_toggle.setOnClickListener {
+            viewModel.handlePinToggleClick()
+        }
     }
 }
